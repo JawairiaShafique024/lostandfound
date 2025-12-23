@@ -96,14 +96,22 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 
+# Source - https://stackoverflow.com/a
+# Posted by Sabuhi Shukurov
+# Retrieved 2025-12-24, License - CC BY-SA 4.0
+
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'static'
+if DEBUG:
+   STATICFILES_DIRS = [
+   os.path.join(BASE_DIR, 'static'),
+   ]
+else:
+   STATIC_ROOT = os.path.join(BASE_DIR,'static')
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-# Media files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
