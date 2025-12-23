@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Lost Item May Have Been Found!</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 300;
+        }
+        .emoji {
+            font-size: 48px;
+            margin-bottom: 15px;
+            display: block;
+        }
+        .content {
+            padding: 40px 30px;
+        }
+        .greeting {
+            font-size: 18px;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        .good-news {
+            background-color: #e8f5e8;
+            border-left: 4px solid #27ae60;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .item-details {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 25px 0;
+            border: 1px solid #e9ecef;
+        }
+        .item-details h3 {
+            color: #495057;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        .detail-row {
+            display: flex;
+            margin-bottom: 12px;
+            align-items: flex-start;
+        }
+        .detail-label {
+            font-weight: 600;
+            color: #6c757d;
+            min-width: 100px;
+            margin-right: 15px;
+        }
+        .detail-value {
+            color: #495057;
+            flex: 1;
+        }
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            text-align: center;
+            margin: 25px 0;
+            transition: transform 0.2s;
+        }
+        .cta-button:hover {
+            transform: translateY(-2px);
+        }
+        .footer {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 25px 30px;
+            text-align: center;
+            font-size: 14px;
+        }
+        .footer-logo {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .divider {
+            height: 2px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 30px 0;
+            border: none;
+        }
+        @media (max-width: 600px) {
+            .container {
+                margin: 10px;
+                border-radius: 5px;
+            }
+            .header, .content, .footer {
+                padding: 20px;
+            }
+            .detail-row {
+                flex-direction: column;
+            }
+            .detail-label {
+                margin-bottom: 5px;
+                min-width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <span class="emoji">🎉</span>
+            <h1>Great News!</h1>
+            <p style="margin: 0; opacity: 0.9;">Your lost item may have been found</p>
+        </div>
+        
+        <div class="content">
+            <div class="greeting">
+                Hello <strong>{{ owner_name }}</strong>,
+            </div>
+            
+            <div class="good-news">
+                <strong>🔍 We found a potential match for your lost item!</strong><br>
+                Someone has reported finding an item that matches your "<strong>{{ lost_item_name }}</strong>".
+            </div>
+            
+            <hr class="divider">
+            
+            <div class="item-details">
+                <h3>📋 Found Item Details</h3>
+                <div class="detail-row">
+                    <div class="detail-label">Item:</div>
+                    <div class="detail-value"><strong>{{ found_item_name }}</strong></div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Description:</div>
+                    <div class="detail-value">{{ found_item_description }}</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Found by:</div>
+                    <div class="detail-value">{{ finder_name }}</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Contact:</div>
+                    <div class="detail-value">{{ finder_contact }}</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Match Score:</div>
+                    <div class="detail-value"><strong>{{ confidence_score }}% confidence</strong></div>
+                </div>
+            </div>
+            
+            <div style="text-align: center;">
+                <a href="{{ dashboard_url }}" class="cta-button">
+                    🚀 View Match & Start Chat
+                </a>
+            </div>
+            
+            <div style="background-color: #fff3cd; border: 1px solid #ffeaa7; border-radius: 5px; padding: 15px; margin-top: 25px;">
+                <strong>⚡ Next Steps:</strong>
+                <ul style="margin: 10px 0; padding-left: 20px;">
+                    <li>Click the button above to view the match details</li>
+                    <li>Start a conversation with the finder</li>
+                    <li>Verify the item details before meeting</li>
+                    <li>Arrange a safe meeting location</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div class="footer-logo">🔍 Lost & Found Hub</div>
+            <p style="margin: 5px 0; opacity: 0.8;">Connecting lost items with their owners</p>
+            <p style="margin: 0; font-size: 12px; opacity: 0.6;">
+                This is an automated notification. Please do not reply to this email.
+            </p>
+        </div>
+    </div>
+</body>
+</html>
