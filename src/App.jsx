@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { AuthContext } from "./context/AuthContext";
 
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import './App.css'
