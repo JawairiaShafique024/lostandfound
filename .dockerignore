@@ -1,0 +1,5 @@
+node_modules
+django_backend
+__pycache__
+.git
+.env
