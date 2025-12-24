@@ -27,3 +27,13 @@ jobs:
 
       - name: Build Docker Image
         run: docker build -t lostandfound-app .
+
+      - name: Login to Docker Hub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+
+      - name: Build Image
+        run: docker build -t username/lostandfound=app:latest .
+
+      - name: Push Image
+        run: docker push username/lostandfound-app:latest
+
